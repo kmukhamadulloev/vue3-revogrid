@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
 import { VGrid, VGridVueTemplate } from "@revolist/vue3-datagrid";
 import SelectTypePlugin from "@revolist/revogrid-column-select";
 import NumberColumnType from '@revolist/revogrid-column-numeral';
