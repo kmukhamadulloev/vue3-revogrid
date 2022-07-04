@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="cl-12">
+    <div class="cl-12 full-height">
       <v-grid theme="material" ref="grid" row-size="35" filter resize :source="rows" :columns="columns" :columnTypes="columnTypes" row-class="highlighted" range></v-grid>
     </div>
   </div>
@@ -32,16 +32,16 @@ export default {
         'numeric': new NumberColumnType(0, 0)
       },
       columns: [
-        { prop: "id", name: "№", order: "asc", columnType: "numeric", pin: "colPinStart", sortable: true, resize: true },
+        { prop: "id", name: "№", rowDrag: true, order: "asc", columnType: "numeric", pin: "colPinStart", sortable: true, resize: true },
         { prop: "names", name: "ФИО", order: "asc", columnType: "string", sortable: true, resize: true, size: 250 },
-        { prop: "dateofbirth", name: "Дата рождения", order: "asc", columnType: "date", sortable: true, resize: true, size: 200 },
-        { prop: "email", name: "Эл. почта", order: "asc", columnType: "string", sortable: true, resize: true, size: 200 },
-        { prop: "phone", name: "Телефон", order: "asc", columnType: "string", sortable: true, resize: true, size: 200 },
-        { prop: "address", name: "Адресс", order: "asc", columnType: "string", sortable: true, resize: true, size: 200 },
-        { prop: "index", name: "Индекс", order: "asc", columnType: "numeric", sortable: true, resize: true, size: 200 },
-        { prop: "city", name: "Город", order: "asc", columnType: "select", source: ["Душанбе", "Москва"], sortable: true, resize: true, size: 200 },
+        { prop: "dateofbirth", name: "Дата рождения", order: "asc", columnType: "date", sortable: true, resize: true, size: 150 },
+        { prop: "email", name: "Эл. почта", order: "asc", columnType: "string", sortable: true, resize: true, size: 150 },
+        { prop: "phone", name: "Телефон", order: "asc", columnType: "string", sortable: true, resize: true, size: 150 },
+        { prop: "address", name: "Адрес", order: "asc", columnType: "string", sortable: true, resize: true, size: 250 },
+        { prop: "index", name: "Индекс", order: "asc", columnType: "numeric", sortable: true, resize: true, size: 100 },
+        { prop: "city", name: "Город", order: "asc", columnType: "select", source: ["Душанбе", "Москва"], sortable: true, resize: true, size: 150 },
         { prop: "country", name: "Страна", order: "asc", columnType: "select", source: ["Таджикистан", "Российская Федерация"], sortable: true, resize: true, size: 200 },
-        { prop: "status", name: "Статус", pin: "colPinEnd", order: "asc", columnType: "select", source: ["Доступно", "Недоступно"], sortable: true, resize: true, size: 200 },
+        { prop: "status", name: "Статус", pin: "colPinEnd", order: "asc", columnType: "select", source: ["Доступно", "Недоступно"], sortable: true, resize: true, size: 150 },
       ],
       rows: [
         { id: 1, names: 'Иванов Иван Иванович', email: 'ivanov@gmail.com', dateofbirth: "2000-12-12", phone: '+79996663737', address: 'ул. Пушкина 44 кв 131', index: 700035, city: 'Душанбе', country: 'Таджикистан', status: "Доступно" },
@@ -57,8 +57,7 @@ export default {
   methods: {
     addRow() {
       const grid = this.$refs.grid.$el;
-      let lastId = this.rows[this.rows.length - 1].id;
-      this.rows.push({id: ++lastId});
+      this.rows.push({});
       grid.columns = [];
       grid.columns = this.columns;
       grid.source = [];
@@ -71,6 +70,7 @@ export default {
 <style>
 body {
   margin: 0;
+  height: 100vh;
 }
 
 .container {
@@ -90,12 +90,17 @@ body {
   width: 100%;
 }
 
+.full-height {
+  height: 85vh;
+}
+
 button {
   padding: 0.5rem 1rem;
   margin-left: 0.15rem;
   border: 1px solid #27b;
   background: transparent;
   color: #27b;
+  border-radius: 25px;
   transition: .3s background-color, .2s color;
   cursor: pointer;
 }
@@ -113,7 +118,7 @@ button:hover {
 }
 
 revo-grid {
-  height: 85vh;
+  height: 100%;
   border: 1px solid #ccc;
 }
 </style>
