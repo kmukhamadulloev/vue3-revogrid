@@ -40,13 +40,22 @@ export default {
         { prop: "index", name: "Индекс", order: "asc", columnType: "numeric", sortable: true, resize: true, size: 100 },
         { prop: "city", name: "Город", order: "asc", columnType: "select", source: ["Душанбе", "Москва"], sortable: true, resize: true, size: 150 },
         { prop: "country", name: "Страна", order: "asc", columnType: "select", source: ["Таджикистан", "Российская Федерация"], sortable: true, resize: true, size: 200 },
-        { prop: "status", name: "Статус", pin: "colPinEnd", order: "asc", columnType: "select", source: ["Доступно", "Недоступно"], sortable: true, resize: true, size: 150 },
+        { prop: "status", name: "Статус", pin: "colPinEnd", order: "asc", columnType: "select", source: [true, false], sortable: true, resize: true, size: 150,
+          cellTemplate: (createElement, props) => {
+            return createElement('span', {
+              class: {
+                'bubble': true,
+                'active': props.model.status
+              }
+            }, props.model.status ? 'Доступно' : 'Недоступно');
+          }
+        },
       ],
       rows: [
-        { id: 1, names: 'Иванов Иван Иванович', email: 'ivanov@gmail.com', dateofbirth: "2000-12-12", phone: '+79996663737', address: 'ул. Пушкина 44 кв 131', index: 700035, city: 'Душанбе', country: 'Таджикистан', status: "Доступно" },
-        { id: 2, names: 'Иванов Иван Иванович', email: 'ivanov@gmail.com', dateofbirth: "2000-12-12", phone: '+79996663737', address: 'ул. Пушкина 44 кв 131', index: 700035, city: 'Душанбе', country: 'Таджикистан', status: "Доступно" },
-        { id: 3, names: 'Иванов Иван Иванович', email: 'ivanov@gmail.com', dateofbirth: "2000-12-12", phone: '+79996663737', address: 'ул. Пушкина 44 кв 131', index: 700035, city: 'Душанбе', country: 'Таджикистан', status: "Доступно" },
-        { id: 4, names: 'Иванов Иван Иванович', email: 'ivanov@gmail.com', dateofbirth: "2000-12-12", phone: '+79996663737', address: 'ул. Пушкина 44 кв 131', index: 700035, city: 'Душанбе', country: 'Таджикистан', status: "Доступно" }
+        { id: 1, names: 'Алексеев Александр Александрович', email: 'alexseyev@gmail.com', dateofbirth: "1996-7-8", phone: '+79996663737', address: 'ул. Пушкина 44 кв 131', index: 700035, city: 'Душанбе', country: 'Таджикистан', status: true },
+        { id: 2, names: 'Боратов Борат Боратович', email: 'borat@gmail.com', dateofbirth: "1995-12-21", phone: '+79996663737', address: 'ул. Пушкина 44 кв 131', index: 700035, city: 'Душанбе', country: 'Таджикистан', status: false },
+        { id: 3, names: 'Васильев Василий Васильевич', email: 'vasyan@gmail.com', dateofbirth: "1999-2-12", phone: '+79996663737', address: 'ул. Пушкина 44 кв 131', index: 700035, city: 'Душанбе', country: 'Таджикистан', status: false },
+        { id: 4, names: 'Георгиев Георгий Георгиевич', email: 'georgy@gmail.com', dateofbirth: "2000-10-11", phone: '+79996663737', address: 'ул. Пушкина 44 кв 131', index: 700035, city: 'Душанбе', country: 'Таджикистан', status: true }
       ]
     };
   },
@@ -74,10 +83,6 @@ body {
 
 .container {
   padding: 1rem;
-}
-
-.row {
-  
 }
 
 .pb {
@@ -119,5 +124,16 @@ button:hover {
 revo-grid {
   height: 100%;
   border: 1px solid #ccc;
+}
+
+.bubble {
+  background-color: #B27;
+  padding: 3px 10px;
+  color: #fff;
+  border-radius: 25px;
+}
+
+.bubble.active {
+  background-color: #7B2;
 }
 </style>
