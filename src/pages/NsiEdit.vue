@@ -44,8 +44,6 @@ export default {
       ],
       rows: [
         { catalog_id: "1012", id: "1", code: "L1743", title: "Автомобиль ВАЗ 2102 1999", title_long: "Автомобиль ВАЗ 2102 1999 года производства 95 лс", title_short: "ВАЗ 21022 1999", decription: "Автомобиль как автомобиль для езды и тд", purpose: "Просто так", subdivision: null, competition_name: null, vendor: "HUAWEI - HUAWEI", country: "Афганистан", bom_code: "548sad4558", model: "2102 99", item_type: "Товар", material_group: "73001 - Вспомогательное технологическое оборудование", item_unit: "шт", sap_code: "1929812", amount: "1", delivery_time: "30", is_winding: "Нет", weight: null, width: null, length: null, height: null, volume: null, price: "10000.00", currency: "RUB (P)", tax: null, license_right: null },
-        { catalog_id: "1012", id: "1/1", code: "L1743", title: "Двигатель ВАЗ 2102 1999", title_long: "Двигатель ВАЗ 2102 1999 года производства 95 лс", title_short: "ВАЗ 21022 1999", decription: "Двигатель как автомобиль для езды и тд", purpose: "Просто так", subdivision: null, competition_name: null, vendor: "HUAWEI - HUAWEI", country: "Афганистан", bom_code: "548sad4558", model: "2102 99", item_type: "Товар", material_group: "73001 - Вспомогательное технологическое оборудование", item_unit: "шт", sap_code: "1929812", amount: "1", delivery_time: "30", is_winding: "Нет", weight: null, width: null, length: null, height: null, volume: null, price: "10000.00", currency: "RUB (P)", tax: null, license_right: null },
-        { catalog_id: "1012", id: "1/2", code: "L1743", title: "Шины ВАЗ 2102 1999", title_long: "Шины для ВАЗ 2102 1999 года производства 95 лс", title_short: "ВАЗ 21022 1999", decription: "Шины как шины для езды и тд", purpose: "Просто так", subdivision: null, competition_name: null, vendor: "HUAWEI - HUAWEI", country: "Афганистан", bom_code: "548sad4558", model: "2102 99", item_type: "Товар", material_group: "73001 - Вспомогательное технологическое оборудование", item_unit: "шт", sap_code: "1929812", amount: "1", delivery_time: "30", is_winding: "Нет", weight: null, width: null, length: null, height: null, volume: null, price: "10000.00", currency: "RUB (P)", tax: null, license_right: null },
         { catalog_id: "1012", id: "2", code: "L1743", title: "Кабель трёхслойный", title_long: "Кабель трёхслойный 1999 года производства", title_short: "ВАЗ 21022 1999", decription: "Кабель трёхслойный 1999 года производства", purpose: "Просто так", subdivision: null, competition_name: null, vendor: "HUAWEI - HUAWEI", country: "Афганистан", bom_code: "548sad4558", model: "789", item_type: "Товар", material_group: "73001 - Вспомогательное технологическое оборудование", item_unit: "м", sap_code: "1929812", amount: "1", delivery_time: "30", is_winding: "Да", weight: "0.12", width: null, length: null, height: null, volume: "123", price: "300.00", currency: "USD ($)", tax: null, license_right: null },
         { catalog_id: "1012", id: "2", code: "L1743", title: "Кабель трёхслойный 300м", title_long: "Кабель трёхслойный 1999 года производства", title_short: "ВАЗ 21022 1999", decription: "Автомобиль как автомобиль для езды и тд", purpose: "Просто так", subdivision: null, competition_name: null, vendor: "HUAWEI - HUAWEI", country: null, bom_code: "548sad4558", model: "2102 99", item_type: "Товар", material_group: "73001 - Вспомогательное технологическое оборудование", item_unit: null, sap_code: "1929812", amount: "1", delivery_time: "30", is_winding: "Нет", weight: "9", width: "10", length: "10", height: "10", volume: null, price: "30000.00", currency: "RUB (P)", tax: null, license_right: null },
         { catalog_id: "1012", id: "3", code: "L1743", title: "ПО для панели управления материалов", title_long: "ПО для панели управления материалов 2021 года производства", title_short: "ВАЗ 21022 1999", decription: "ПО для панели управления материалов 2021 года производства", purpose: "Просто так", subdivision: "Что-то там", competition_name: "Кто Что Где Когда", vendor: "HUAWEI - HUAWEI", country: null, bom_code: "548sad4558", model: "2102 99", item_type: "Софт", material_group: "73001 - Вспомогательное технологическое оборудование", item_unit: null, sap_code: "1929812", amount: "1", delivery_time: "30", is_winding: null, weight: null, width: null, length: null, height: null, volume: null, price: "10000.00", currency: "RUB (P)", tax: "С НДС", license_right: "Исключительные" },
@@ -122,7 +120,6 @@ export default {
         },
       ];
       let newRows = this.rows.filter(row => row.item_type == "Товар");
-      console.log(newRows);
       grid.source = [];
       grid.source = newRows;
     },
@@ -144,7 +141,6 @@ export default {
         { prop: "separable", name: "Отделимое", order: "asc", columnType: "select", source: ["Отделимое", "Неотделимое"], sortable: true, resize: true, size: 200 }
       ];
       let newRows = this.rows.filter(row => row.item_type == "Софт");
-      console.log(newRows);
       grid.source = [];
       grid.source = newRows;
     },
@@ -160,7 +156,6 @@ export default {
         { prop: "sap_code", name: "Код SAP", order: "asc", sortable: true, resize: true, size: 200 },
       ];
       let newRows = this.rows.filter(row => row.item_type == "Услуга");
-      console.log(newRows);
       grid.source = [];
       grid.source = newRows;
     }

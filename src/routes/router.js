@@ -4,6 +4,7 @@ import PurchaserEdit from '@/pages/PurchaserEdit'
 import InitiatorEdit from '@/pages/InitiatorEdit'
 import VendorEdit from '@/pages/VendorEdit'
 import NsiEdit from '@/pages/NsiEdit'
+import ExamplePage from '@/pages/ExamplePage'
 
 const routes = [
   {
@@ -25,6 +26,10 @@ const routes = [
   {
     path: '/nsi',
     component: NsiEdit
+  },
+  {
+    path: '/example',
+    component: ExamplePage
   }
 ];
 
