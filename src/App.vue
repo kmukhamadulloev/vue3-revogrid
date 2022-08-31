@@ -21,7 +21,7 @@ body {
   margin: 0;
   height: 100vh;
   font-size: 1rem;
-  font-family: system-ui;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
 *, *::after, *::before {
