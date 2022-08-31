@@ -1,5 +1,5 @@
 <template>
-  <div class="tab__details" v-show="tabIndex == selectedIndex">
+  <div class="tab__details" v-show="index == selected">
     <slot></slot>
   </div>
 </template>
@@ -8,12 +8,12 @@
 import { inject } from 'vue'
 
 export default {
-  props: ['tabIndex'],
+  props: ['index'],
   setup() {
-    const selectedIndex = inject("selectedIndex")
+    const selected = inject("selected")
 
     return {
-      selectedIndex
+      selected
     }
   }
 }

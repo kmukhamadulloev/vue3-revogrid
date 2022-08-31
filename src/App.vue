@@ -24,6 +24,10 @@ body {
   font-family: system-ui;
 }
 
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
 .p {
   padding: 1rem;
 }
@@ -42,6 +46,14 @@ body {
 
 .row {
   display: flex;
+}
+
+.cl-3 {
+  width: 25%;
+}
+
+.cl-9 {
+  width: 75%;
 }
 
 .cl-12 {

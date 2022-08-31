@@ -1,7 +1,7 @@
 <template>
   <div class="tabs">
     <ul class="tabs__wrapper">
-      <li v-for="tab in tabs.value" :key="tab.tabIndex" @click="selectedIndex = tab.tabIndex" :class="{ active: tab.tabIndex == selectedIndex }">{{ tab.title }}</li>
+      <li v-for="tab in tabs" :key="tab.index" @click="selected = tab.index" :class="{ active: tab.index == selected }">{{ tab.title }}</li>
     </ul>
     <slot></slot>
   </div>
@@ -11,22 +11,13 @@
 import { ref, provide } from 'vue'
 
 export default {
-  props: ['title'],
   setup(props, { slots }) {
     const tabs = ref(slots.default().map((tab) => tab.props))
+    const selected = ref(tabs.value[0].index)
 
-    tabs.value.forEach(el => {
-      console.log(el.tabIndex, el.title);
-    });
-
-    const selectedIndex = ref(tabs.value[0].tabIndex)
-
-    
-    console.log(selectedIndex)
-
-    provide("selectedIndex", selectedIndex);
+    provide("selected", selected);
     return {
-      selectedIndex,
+      selected,
       tabs
     }
   }
@@ -35,6 +26,7 @@ export default {
 
 <style scoped>
 .tabs {
+  padding: 1rem;
 }
 
 .tabs__wrapper {
