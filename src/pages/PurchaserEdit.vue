@@ -1,34 +1,90 @@
 <template>
-  <div class="p">
+  <MDBTabs v-model="activeTabId1">
     <div class="row">
-      <div class="cl-12 full-height">
-        <v-grid theme="compact" ref="grid" filter resize range :source="rows" :columns="columns"
-          :columnTypes="columnTypes"></v-grid>
+      <div class="col-md-8">
+        <!-- Tabs navs -->
+        <MDBTabNav tabsClasses="mb-3 mt-3">
+          <MDBTabItem tabId="ex1-1" href="ex1-1"><i class="fas fa-table"></i> Таблицы <MDBBadge color="primary">3
+            </MDBBadge>
+          </MDBTabItem>
+          <MDBTabItem tabId="ex1-2" href="ex1-2"><i class="fas fa-archive"></i> Журнал изменений <MDBBadge
+              color="warning">
+              5</MDBBadge>
+          </MDBTabItem>
+          <MDBTabItem tabId="ex1-3" href="ex1-3"><i class="fas fa-comment"></i> Комментарии <MDBBadge color="danger">3
+            </MDBBadge>
+          </MDBTabItem>
+          <MDBTabItem tabId="ex1-4" href="ex1-4"><i class="fas fa-info-circle"></i> Остальное</MDBTabItem>
+        </MDBTabNav>
+      </div>
+      <div class="col-md-4 pt-3 text-end">
+        <router-link to="/initiator" class="btn btn-lg btn-success">Далее</router-link>
       </div>
     </div>
-    <div class="row ls">
-      <div>
-      </div>
-      <div>
-        <button type="button">Импорт</button>
-        <button type="button">Экспорт</button>
-        <button type="button">Далее</button>
-      </div>
-    </div>
-  </div>
+    <MDBTabContent contentClasses="px-3">
+      <MDBTabPane tabId="ex1-1">
+        <tabs>
+          <tab index="tab-1" title="Таблица">
+            <v-grid theme="compact" ref="item-grid" filter resize range :source="items" :columns="columns"
+              :columnTypes="columnTypes"></v-grid>
+          </tab>
+        </tabs>
+      </MDBTabPane>
+      <MDBTabPane tabId="ex1-2">
+        <MDBTable class="align-middle mb-0 bg-white">
+          <thead class="bg-light">
+            <tr>
+              <th>Пользователь</th>
+              <th>Дата</th>
+              <th>Статус</th>
+              <th>Описание</th>
+              <th>Дейтсвие</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="status in this.statuses">
+              <td>
+                <div class="d-flex align-items-center">
+                  <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px"
+                    class="rounded-circle" />
+                  <div class="ms-3">
+                    <p class="fw-bold mb-1">{{ status.by }}</p>
+                    <p class="text-muted mb-0">john.doe@gmail.com</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <p class="fw-normal mb-1">{{ status.datetime }}</p>
+              </td>
+              <td>
+                <MDBBadge badge="success" pill class="d-inline">{{ status.code }}</MDBBadge>
+              </td>
+              <td>{{ status.title }}</td>
+              <td>{{ status.action }}</td>
+            </tr>
+          </tbody>
+        </MDBTable>
+      </MDBTabPane>
+      <MDBTabPane tabId="ex1-3">Content #3</MDBTabPane>
+      <MDBTabPane tabId="ex1-4">Content #4</MDBTabPane>
+    </MDBTabContent>
+  </MDBTabs>
 </template>
 
 <script>
-import { VGrid, VGridVueTemplate } from "@revolist/vue3-datagrid";
+import { MDBTabs, MDBTabNav, MDBTabContent, MDBTabItem, MDBTabPane, MDBBadge, MDBTable, MDBBtn, } from 'mdb-vue-ui-kit';
+import { VGrid } from "@revolist/vue3-datagrid";
 import SelectTypePlugin from "@revolist/revogrid-column-select";
 import NumberColumnType from '@revolist/revogrid-column-numeral';
 import DateColumnPlugin from "@revolist/revogrid-column-date";
+import { ref } from 'vue';
+import Tabs from '@/components/Tabs.vue';
+import Tab from '@/components/Tab.vue';
 
 export default {
-  name: "PurchaserEdit",
+  name: "ExamplePage",
   data() {
     return {
-      allow: true,
       columnTypes: {
         'date': new DateColumnPlugin(),
         'select': new SelectTypePlugin(),
@@ -50,7 +106,9 @@ export default {
               }
             });
 
-            if (props.model.id.match('/')) return null;
+            if ('id' in this.items) {
+              if (props.model.id.match('/')) return null;
+            }
 
             return input;
           }
@@ -67,87 +125,52 @@ export default {
         { prop: "sap_code", name: "Код SAP", order: "asc", sortable: true, resize: true, size: 200 },
         { prop: "decription", name: "Примечание", order: "asc", sortable: true, resize: true, size: 300 },
       ],
-      rows: [
-        { is_selected: true, catalog_id: "1012", id: "1", code: "L1743", title: "Автомобиль ВАЗ 2102 1999", title_long: "Автомобиль ВАЗ 2102 1999 года производства 95 лс", title_short: "ВАЗ 21022 1999", decription: "Автомобиль как автомобиль для езды и тд", purpose: "Просто так", subdivision: null, competition_name: null, vendor: "HUAWEI - HUAWEI", country: "Афганистан", bom_code: "548sad4558", model: "2102 99", item_type: "Товар", material_group: "73001 - Вспомогательное технологическое оборудование", item_unit: "шт", sap_code: "1929812", amount: "1", delivery_time: "30", is_winding: "Нет", weight: null, width: null, length: null, height: null, volume: null, price: "10000.00", currency: "RUB (P)", tax: null, license_right: null },
-        { catalog_id: "1012", id: "1/1", code: "L1743", title: "Двигатель ВАЗ 2102 1999", title_long: "Двигатель ВАЗ 2102 1999 года производства 95 лс", title_short: "ВАЗ 21022 1999", decription: "Двигатель как автомобиль для езды и тд", purpose: "Просто так", subdivision: null, competition_name: null, vendor: "HUAWEI - HUAWEI", country: "Афганистан", bom_code: "548sad4558", model: "2102 99", item_type: "Товар", material_group: "73001 - Вспомогательное технологическое оборудование", item_unit: "шт", sap_code: "1929812", amount: "1", delivery_time: "30", is_winding: "Нет", weight: null, width: null, length: null, height: null, volume: null, price: "10000.00", currency: "RUB (P)", tax: null, license_right: null },
-        { catalog_id: "1012", id: "1/2", code: "L1743", title: "Шины ВАЗ 2102 1999", title_long: "Шины для ВАЗ 2102 1999 года производства 95 лс", title_short: "ВАЗ 21022 1999", decription: "Шины как шины для езды и тд", purpose: "Просто так", subdivision: null, competition_name: null, vendor: "HUAWEI - HUAWEI", country: "Афганистан", bom_code: "548sad4558", model: "2102 99", item_type: "Товар", material_group: "73001 - Вспомогательное технологическое оборудование", item_unit: "шт", sap_code: "1929812", amount: "1", delivery_time: "30", is_winding: "Нет", weight: null, width: null, length: null, height: null, volume: null, price: "10000.00", currency: "RUB (P)", tax: null, license_right: null },
-        { is_selected: false, catalog_id: "1012", id: "2", code: "L1743", title: "Кабель трёхслойный", title_long: "Кабель трёхслойный 1999 года производства", title_short: "ВАЗ 21022 1999", decription: "Кабель трёхслойный 1999 года производства", purpose: "Просто так", subdivision: null, competition_name: null, vendor: "HUAWEI - HUAWEI", country: "Афганистан", bom_code: "548sad4558", model: "789", item_type: "Товар", material_group: "73001 - Вспомогательное технологическое оборудование", item_unit: "м", sap_code: "1929812", amount: "1", delivery_time: "30", is_winding: "Да", weight: "0.12", width: null, length: null, height: null, volume: "123", price: "300.00", currency: "USD ($)", tax: null, license_right: null },
-        { catalog_id: "1012", id: "2", code: "L1743", title: "Кабель трёхслойный 300м", title_long: "Кабель трёхслойный 1999 года производства", title_short: "ВАЗ 21022 1999", decription: "Автомобиль как автомобиль для езды и тд", purpose: "Просто так", subdivision: null, competition_name: null, vendor: "HUAWEI - HUAWEI", country: null, bom_code: "548sad4558", model: "2102 99", item_type: "Товар", material_group: "73001 - Вспомогательное технологическое оборудование", item_unit: null, sap_code: "1929812", amount: "1", delivery_time: "30", is_winding: "Нет", weight: "9", width: "10", length: "10", height: "10", volume: null, price: "30000.00", currency: "RUB (P)", tax: null, license_right: null },
-        { is_selected: false, catalog_id: "1012", id: "3", code: "L1743", title: "ПО для панели управления материалов", title_long: "ПО для панели управления материалов 2021 года производства", title_short: "ВАЗ 21022 1999", decription: "ПО для панели управления материалов 2021 года производства", purpose: "Просто так", subdivision: "Что-то там", competition_name: "Кто Что Где Когда", vendor: "HUAWEI - HUAWEI", country: null, bom_code: "548sad4558", model: "2102 99", item_type: "Софт", material_group: "73001 - Вспомогательное технологическое оборудование", item_unit: null, sap_code: "1929812", amount: "1", delivery_time: "30", is_winding: null, weight: null, width: null, length: null, height: null, volume: null, price: "10000.00", currency: "RUB (P)", tax: "С НДС", license_right: "Исключительные" },
-        { is_selected: false, catalog_id: "1012", id: "4", code: "L1743", title: "Установка программы на панель", title_long: "Установка программы на панель производства 95 лс", title_short: "ВАЗ 21022 1999", decription: "Установка программы на панель для езды и тд", purpose: "Просто так", subdivision: null, competition_name: null, vendor: "HUAWEI - HUAWEI", country: null, bom_code: "548sad4558", model: "2102 99", item_type: "Услуга", material_group: "73001 - Вспомогательное технологическое оборудование", item_unit: null, sap_code: "1929812", amount: "1", delivery_time: "30", is_winding: null, weight: null, width: null, length: null, height: null, volume: null, price: "10000.00", currency: "RUB (P)", tax: null, license_right: null },
-      ],
-    };
+      items: [],
+      statuses: [],
+      details: []
+    }
   },
   components: {
+    MDBTabs,
+    MDBTabNav,
+    MDBTabContent,
+    MDBTabItem,
+    MDBTabPane,
+    MDBTable,
+    MDBBtn,
     VGrid,
+    MDBBadge,
+    Tabs,
+    Tab
   },
+  setup() {
+    const activeTabId1 = ref('ex1-1');
+    return {
+      activeTabId1,
+    };
+  },
+  mounted() {
+    this.getData();
+  },
+  methods: {
+    getData() {
+      fetch('http://97f0f272.host/api/linksaver')
+        .then(res => res.json()).then((response) => {
+          this.items = response.data.items.concat(response.data.softs.concat(response.data.services));
+          this.statuses = response.statuses;
+          this.comments = response.comments;
+          this.details = response.details;
+        }).catch((error) => {
+          console.log(error);
+        });
+    }
+  }
 };
 </script>
 
 <style scoped>
-.full-height {
+revo-grid {
   height: 85vh;
-}
-
-.ls {
-  background: #000;
-  justify-content: space-between;
-}
-
-button {
-  padding: 0.75rem 1rem;
-  margin: 0;
-  background: #000;
-  color: #efefef;
-  transition: .3s background-color, .2s color;
-  cursor: pointer;
-  min-width: 120px;
-  outline: none;
-  border: none;
-}
-
-button:focus {
-  box-shadow: 0px 0px 4px #27b;
-  outline-color: transparent;
-  outline-width: 4px;
-  outline-style: dotted;
-}
-
-button:hover {
-  color: #fff;
-  background: #27b;
-}
-
-revo-grid {
-  height: 100%;
   border: 1px solid #ccc;
-}
-
-.bubble {
-  background-color: #B27;
-  padding: 3px 10px;
-  color: #fff;
-  border-radius: 25px;
-}
-
-.bubble.active {
-  background-color: #7B2;
-}
-
-.inactive {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 0 15px;
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-revo-grid {
-  width: 99.9%;
-}
-
-revo-grid[theme=compact] revogr-data .rgRow.focused-rgRow {
-  background-color: rgba(238, 255, 246, 1);
 }
 </style>

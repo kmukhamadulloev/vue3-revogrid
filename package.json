@@ -12,6 +12,7 @@
     "@revolist/revogrid-column-numeral": "^1.0.2",
     "@revolist/revogrid-column-select": "^2.0.2",
     "@revolist/vue3-datagrid": "^3.1.0",
+    "autoprefixer": "10.4.5",
     "core-js": "^3.8.3",
     "file-saver": "^2.0.5",
     "mdb-vue-ui-kit": "^2.0.0",
@@ -29,5 +30,8 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ]
+  ],
+  "overrides": {
+    "autoprefixer": "10.4.5"
+  }
 }

@@ -18,11 +18,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.tab__details {
-  padding: 1rem;
-  min-height: 400px;
-  box-shadow: 0 4px 8px 2px #ccc;
-}
-</style>

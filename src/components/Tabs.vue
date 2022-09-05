@@ -1,9 +1,9 @@
 <template>
   <div class="tabs">
+    <slot></slot>
     <ul class="tabs__wrapper">
       <li v-for="tab in tabs" :key="tab.index" @click="selected = tab.index" :class="{ active: tab.index == selected }">{{ tab.title }}</li>
     </ul>
-    <slot></slot>
   </div>
 </template>
 
@@ -25,9 +25,6 @@ export default {
 </script>
 
 <style scoped>
-.tabs {
-  padding: 1rem;
-}
 
 .tabs__wrapper {
   list-style: none;
@@ -40,16 +37,18 @@ export default {
 .tabs__wrapper>li {
   cursor: pointer;
   display: block;
-  width: 100%;
-  padding: 10px;
+  padding: 5px 15px;
   text-align: center;
   color: #333;
-  border-bottom: 5px solid #ccc;
   transition: all .5s;
+  background: #efefef;
+  min-width: 85px;
+  font-size: .8rem;
+  transition: background-color .4s, color .4s;
 }
 
 .tabs__wrapper>li.active {
-  border-bottom-color: #27b;
-  color: #27b;
+  background: #27b;
+    color: #fff;
 }
 </style>
