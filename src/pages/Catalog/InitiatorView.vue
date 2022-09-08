@@ -23,8 +23,7 @@
     </q-btn-group>
 
     <q-btn-group class="q-mt-sm">
-      <q-btn color="negative" glossy icon="cancel" label="Вернуть" />
-      <q-btn color="positive" glossy to="nsi" icon-right="done" label="Далее" />
+      <q-btn color="positive" glossy to="supplier" icon-right="done" label="Далее" />
     </q-btn-group>
   </q-toolbar>
 
@@ -47,17 +46,17 @@
     </q-tab-panel>
 
     <q-tab-panel name="statuses">
-      <div class="text-h6">Alarms</div>
+      <div class="text-h6">Статусы</div>
       Lorem ipsum dolor sit amet consectetur adipisicing elit.
     </q-tab-panel>
 
     <q-tab-panel name="comments">
-      <div class="text-h6">Movies</div>
+      <div class="text-h6">Комментарии</div>
       Lorem ipsum dolor sit amet consectetur adipisicing elit.
     </q-tab-panel>
 
     <q-tab-panel name="extras">
-      <div class="text-h6">Movies</div>
+      <div class="text-h6">Дополнительно</div>
       Lorem ipsum dolor sit amet consectetur adipisicing elit.
     </q-tab-panel>
   </q-tab-panels>
@@ -75,7 +74,7 @@ import Tabs from '@/components/Tabs.vue'
 import Tab from '@/components/Tab.vue'
 
 export default {
-  name: "InitiatorEdit",
+  name: "InitiatorView",
   data() {
     return {
       allow: true,
@@ -86,6 +85,7 @@ export default {
       },
       item_columns: [
         { prop: "id", readonly: true, name: "№ п/п", order: "asc", sortable: true, resize: true, size: 180 },
+        { prop: "catalog_id", readonly: true, name: "Номер каталога", order: "asc", sortable: true, resize: true, size: 180 },
         { prop: "code", readonly: true, name: "Код прайслиста", order: "asc", sortable: true, resize: true, size: 180 },
         { prop: "title", readonly: true, name: "Наименование", order: "asc", sortable: true, resize: true, size: 250 },
         { prop: "material_group", name: "Группа материалов", order: "asc", columnType: "select", sortable: true, resize: true, size: 250, source: ["71021 - Здания сборно-контейнерные", "72200 - Башни, мачты метал.", "72201 - Ограждения, заборы металлические", "72202 - Обор. сигнального освещения мачт", "72203 - Контейнеры аппаратных", "72206 - Киоски", "72209 - Башни, мачты ж/б", "73000 - Стойка унифицированная", "73001 - Вспомогательное технологическое оборудование", "73101 - Коммутатор блок"] }
@@ -93,6 +93,7 @@ export default {
       item_rows: [],
       soft_columns: [
         { prop: "id", readonly: true, name: "№ п/п", order: "asc", sortable: true, resize: true, size: 180 },
+        { prop: "catalog_id", name: "Номер каталога", order: "asc", sortable: true, resize: true, size: 180 },
         { prop: "code", readonly: true, name: "Код прайслиста", order: "asc", sortable: true, resize: true, size: 180 },
         { prop: "title", readonly: true, name: "Наименование", order: "asc", sortable: true, resize: true, size: 250 },
         { prop: "title_long", name: "Полное название с описанием технических характеристик", order: "asc", sortable: true, resize: true, size: 300 },
@@ -108,6 +109,7 @@ export default {
       soft_rows: [],
       service_columns: [
         { prop: "id", readonly: true, name: "№ п/п", order: "asc", sortable: true, resize: true, size: 180 },
+        { prop: "catalog_id", name: "Номер каталога", order: "asc", sortable: true, resize: true, size: 180 },
         { prop: "code", readonly: true, name: "Код прайслиста", order: "asc", sortable: true, resize: true, size: 180 },
         { prop: "title", readonly: true, name: "Наименование", order: "asc", sortable: true, resize: true, size: 250 },
         { prop: "concern", name: "Счёт концерна", order: "asc", columnType: "select", source: ["BI20100210 - Оборудование - (Транспортная сеть)"], sortable: true, resize: true, size: 250 },

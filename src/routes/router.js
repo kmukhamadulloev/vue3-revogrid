@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 import CatalogView from '@/pages/CatalogView'
-import PurchaserFile from '@/pages/PurchaserFile'
-import PurchaserEdit from '@/pages/PurchaserEdit'
-import InitiatorEdit from '@/pages/InitiatorEdit'
-import VendorEdit from '@/pages/VendorEdit'
-import NsiEdit from '@/pages/NsiEdit'
-import ExamplePage from '@/pages/ExamplePage'
+import PurchaserFile from '@/pages/Catalog/PurchaserView'
+import PurchaserView from '@/pages/Catalog/PurchaserView'
+import InitiatorView from '@/pages/Catalog/InitiatorView'
+import SupplierView from '@/pages/Catalog/SupplierView'
+import NsiView from '@/pages/Catalog/NSIView'
 
 const routes = [
   {
     path: '/',
-    component: PurchaserFile
+    component: CatalogView
   },
   {
     path: '/catalogs',
@@ -24,41 +24,25 @@ const routes = [
       {
         path: 'purchaiser',
         name: 'purchaiser',
-        component: PurchaserEdit
+        component: PurchaserView
       },
       {
         path: 'initiator',
         name: 'initiator',
-        component: InitiatorEdit
+        component: InitiatorView
       },
       {
         path: 'supplier',
         name: 'supplier',
-        component: VendorEdit
+        component: SupplierView
       },
       {
         path: 'nsi',
         name: 'nsi',
-        component: NsiEdit
+        component: NsiView
       },
     ]
   },
-  {
-    path: '/initiator',
-    component: InitiatorEdit
-  },
-  {
-    path: '/vendor',
-    component: VendorEdit
-  },
-  {
-    path: '/nsi',
-    component: NsiEdit
-  },
-  {
-    path: '/example',
-    component: ExamplePage
-  }
 ];
 
 const router = createRouter({

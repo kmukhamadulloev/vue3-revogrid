@@ -54,7 +54,7 @@
       <q-img class="absolute-top" src="@/assets/bg.jpg" style="height: 150px">
         <div class="absolute-bottom bg-transparent">
           <q-avatar size="64px">
-            <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+            <img src="@/assets/photo.jpg">
           </q-avatar>
           <div class="text-weight-bold">Комрон Мухамадуллоев</div>
           <div>komron.mukhamadulloe@megafon.ru</div>
